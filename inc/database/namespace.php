@@ -32,7 +32,7 @@ function schema() {
 		`timestamp` datetime NOT NULL,
 		`schedule` varchar(255) DEFAULT NULL,
 		`interval` int unsigned DEFAULT NULL,
-		`status` varchar(255) NOT NULL DEFAULT 'waiting',
+		`status` ENUM( 'waiting', 'running', 'complete' ),
 
 		PRIMARY KEY (`id`),
 		KEY `hook_key_schedule` (`hook`, `key`, `schedule`),
