@@ -1,7 +1,7 @@
 <?php
 namespace PWCC\RapidCronQueries;
 
-const TABLE_PREFIX = 'rapid_cron_';
+const PREFIX     = 'rapid_cron_';
 const DB_VERSION = 1;
 
 /**

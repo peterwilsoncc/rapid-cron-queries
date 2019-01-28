@@ -1,7 +1,7 @@
 <?php
 namespace PWCC\RapidCronQueries\Database;
 
-use const PWCC\RapidCronQueries\TABLE_PREFIX;
+use const PWCC\RapidCronQueries\PREFIX;
 use const PWCC\RapidCronQueries\DB_VERSION;
 
 /**
@@ -10,7 +10,24 @@ use const PWCC\RapidCronQueries\DB_VERSION;
  * Runs as WordPress bootstraps.
  */
 function fast_bootstrap() {
+	if ( get_db_version() < DB_VERSION ) {
+		upgrade();
+	}
+}
 
+/**
+ * Get the database version.
+ *
+ * @return int Database version.
+ */
+function get_db_version() {
+	$current_version = get_network_option( 1, PREFIX . 'db_version' );
+
+	if ( ! $current_version ) {
+		$current_version = 0;
+	}
+
+	return (int) $current_version;
 }
 
 /**
@@ -20,12 +37,12 @@ function fast_bootstrap() {
  */
 function get_db_prefix() {
 	global $wpdb;
-	return $wpdb->base_prefix . TABLE_PREFIX;
+	return $wpdb->base_prefix . PREFIX;
 }
 
 /**
  * Get the database schema.
- * 
+ *
  * @return string Database schema.
  */
 function get_schema() {
@@ -53,4 +70,17 @@ function get_schema() {
 	) $charset_collate;\n";
 
 	return $events_scheme;
+}
+
+/**
+ * Upgrade the Rapid Cron Queries database.
+ *
+ * First run adds the table schema, subsequent runs modify
+ * the table schema as required.
+ */
+function upgrade() {
+	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	dbDelta( get_schema() );
+
+	update_network_option( 1, PREFIX . 'db_version', DB_VERSION );
 }
