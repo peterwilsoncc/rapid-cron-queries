@@ -2,6 +2,7 @@
 namespace PWCC\RapidCronQueries\Database;
 
 use const PWCC\RapidCronQueries\TABLE_PREFIX;
+use const PWCC\RapidCronQueries\DB_VERSION;
 
 /**
  * Boostrap Database functionality

@@ -2,7 +2,7 @@
 namespace PWCC\RapidCronQueries;
 
 const TABLE_PREFIX = 'rapid_cron_';
-const VERSION = 1;
+const DB_VERSION = 1;
 
 /**
  * Kick it off.
