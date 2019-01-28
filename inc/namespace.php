@@ -8,6 +8,7 @@ const DB_VERSION = 1;
  * Kick it off.
  */
 function fast_bootstrap() {
+	Database\fast_bootstrap();
 }
 
 /**

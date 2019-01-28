@@ -6,8 +6,10 @@ use const PWCC\RapidCronQueries\DB_VERSION;
 
 /**
  * Boostrap Database functionality
+ *
+ * Runs as WordPress bootstraps.
  */
-function bootstrap() {
+function fast_bootstrap() {
 
 }
 
