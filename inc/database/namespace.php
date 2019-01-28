@@ -11,11 +11,21 @@ function bootstrap() {
 
 }
 
+/**
+ * Get the Database table prefix.
+ *
+ * @return string DB Table prefix.
+ */
 function get_db_prefix() {
 	global $wpdb;
 	return $wpdb->base_prefix . TABLE_PREFIX;
 }
 
+/**
+ * Get the database schema.
+ * 
+ * @return string Database schema.
+ */
 function get_schema() {
 	global $wpdb;
 
