@@ -11,16 +11,16 @@ function bootstrap() {
 
 }
 
-function db_prefix() {
+function get_db_prefix() {
 	global $wpdb;
 	return $wpdb->base_prefix . TABLE_PREFIX;
 }
 
-function schema() {
+function get_schema() {
 	global $wpdb;
 
 	$charset_collate = $wpdb->get_charset_collate();
-	$db_prefix = db_prefix();
+	$db_prefix = get_db_prefix();
 
 	$events_scheme = "CREATE TABLE `{$db_prefix}events` (
 		`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
