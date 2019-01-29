@@ -58,7 +58,7 @@ function get_schema() {
 	 * throw notices and create an invalid DB Query if they exist.
 	 */
 	$events_scheme = "CREATE TABLE {$db_prefix}events (
-		ID bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		event_id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		site_id bigint(20) unsigned NOT NULL,
 		event_hook varchar(255) NOT NULL,
 		event_key char(32) NOT NULL,
@@ -67,7 +67,7 @@ function get_schema() {
 		event_schedule varchar(255) DEFAULT NULL,
 		event_interval int unsigned DEFAULT NULL,
 		event_status ENUM( 'waiting', 'running', 'complete' ) NOT NULL,
-		PRIMARY KEY  (ID),
+		PRIMARY KEY  (event_id),
 		KEY hook_key_schedule (event_hook,event_key,event_schedule),
 		KEY status (event_status)
 	) $charset_collate;\n";
