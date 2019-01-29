@@ -21,7 +21,7 @@ function fast_bootstrap() {
  * @return int Database version.
  */
 function get_db_version() {
-	$current_version = get_network_option( 1, PREFIX . 'db_version' );
+	$current_version = get_site_option( PREFIX . 'db_version' );
 
 	if ( ! $current_version ) {
 		$current_version = 0;
@@ -85,5 +85,5 @@ function upgrade() {
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 	dbDelta( get_schema() );
 
-	update_network_option( 1, PREFIX . 'db_version', DB_VERSION );
+	update_site_option( PREFIX . 'db_version', DB_VERSION );
 }
