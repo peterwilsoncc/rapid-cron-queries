@@ -44,6 +44,11 @@ function fast_bootstrap() {
  * @return bool Success of storing event.
  */
 function pre_schedule_event( $pre, $event ) {
+	// Pre hijacked.
+	if ( $pre !== null ) {
+		return $pre;
+	}
+
 	return $pre;
 }
 
@@ -64,6 +69,11 @@ function pre_schedule_event( $pre, $event ) {
  * @return bool Success of rescheduling event.
  */
 function pre_reschedule_event( $pre, $event ) {
+	// Pre hijacked.
+	if ( $pre !== null ) {
+		return $pre;
+	}
+
 	return $pre;
 }
 
@@ -81,6 +91,11 @@ function pre_reschedule_event( $pre, $event ) {
  * @return bool Success of unscheduling event.
  */
 function pre_unschedule_event( $pre, $timestamp, $hook, $args ) {
+	// Pre hijacked.
+	if ( $pre !== null ) {
+		return $pre;
+	}
+
 	return $pre;
 }
 
@@ -101,6 +116,11 @@ function pre_unschedule_event( $pre, $timestamp, $hook, $args ) {
  *                  unscheduling one or more events fail.
  */
 function pre_clear_scheduled_hook( $pre, $hook, $args ) {
+	// Pre hijacked.
+	if ( $pre !== null ) {
+		return $pre;
+	}
+
 	return $pre;
 }
 
@@ -121,6 +141,11 @@ function pre_clear_scheduled_hook( $pre, $hook, $args ) {
  *                  events were registered on the hook), false if unscheduling fails.
  */
 function pre_unschedule_hook( $pre, $hook ) {
+	// Pre hijacked.
+	if ( $pre !== null ) {
+		return $pre;
+	}
+
 	return $pre;
 }
 
@@ -139,6 +164,11 @@ function pre_unschedule_hook( $pre, $hook ) {
  * @return bool|object The event object. False if the event does not exist.
  */
 function pre_get_scheduled_event( $pre, $hook, $args, $timestamp ) {
+	// Pre hijacked.
+	if ( $pre !== null ) {
+		return $pre;
+	}
+
 	return $pre;
 }
 
@@ -151,5 +181,10 @@ function pre_get_scheduled_event( $pre, $hook, $args, $timestamp ) {
  * @return array Cron jobs ready to be run.
  */
 function pre_get_ready_cron_jobs( $pre ) {
+	// Pre hijacked.
+	if ( $pre !== null ) {
+		return $pre;
+	}
+
 	return $pre;
 }
