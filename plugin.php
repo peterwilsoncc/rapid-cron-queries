@@ -22,6 +22,7 @@
 namespace PWCC\RapidCronQueries;
 
 include_once __DIR__ . '/inc/namespace.php';
+include_once __DIR__ . '/inc/connector/namespace.php';
 include_once __DIR__ . '/inc/database/namespace.php';
 
 fast_bootstrap();
