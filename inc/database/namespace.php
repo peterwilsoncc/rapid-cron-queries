@@ -51,22 +51,25 @@ function get_schema() {
 	$charset_collate = $wpdb->get_charset_collate();
 	$db_prefix = get_db_prefix();
 
-	$events_scheme = "CREATE TABLE `{$db_prefix}events` (
-		`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-		`site_id` bigint(20) unsigned NOT NULL,
-
-		`hook` varchar(255) NOT NULL,
-		`key` char(32) NOT NULL,
-		`args` longtext NOT NULL,
-
-		`timestamp` datetime NOT NULL,
-		`schedule` varchar(255) DEFAULT NULL,
-		`interval` int unsigned DEFAULT NULL,
-		`status` ENUM( 'waiting', 'running', 'complete' ) NOT NULL,
-
-		PRIMARY KEY (`id`),
-		KEY `hook_key_schedule` (`hook`, `key`, `schedule`),
-		KEY `status` (`status`)
+	/*
+	 * WARNING: Do not format nicely with empty lines between sections!
+	 *
+	 * dbDelta() does not cope well with two consecutive line breaks and will
+	 * throw notices and create an invalid DB Query if they exist.
+	 */
+	$events_scheme = "CREATE TABLE {$db_prefix}events (
+		ID bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		site_id bigint(20) unsigned NOT NULL,
+		event_hook varchar(255) NOT NULL,
+		event_key char(32) NOT NULL,
+		event_args longtext NOT NULL,
+		event_timestamp datetime NOT NULL,
+		event_schedule varchar(255) DEFAULT NULL,
+		event_interval int unsigned DEFAULT NULL,
+		event_status ENUM( 'waiting', 'running', 'complete' ) NOT NULL,
+		PRIMARY KEY  (ID),
+		KEY hook_key_schedule (event_hook,event_key,event_schedule),
+		KEY status (event_status)
 	) $charset_collate;\n";
 
 	return $events_scheme;
