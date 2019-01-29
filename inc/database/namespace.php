@@ -1,8 +1,8 @@
 <?php
 namespace PWCC\RapidCronQueries\Database;
 
-use const PWCC\RapidCronQueries\PREFIX;
 use const PWCC\RapidCronQueries\DB_VERSION;
+use const PWCC\RapidCronQueries\PREFIX;
 
 /**
  * Boostrap Database functionality
@@ -49,7 +49,7 @@ function get_schema() {
 	global $wpdb;
 
 	$charset_collate = $wpdb->get_charset_collate();
-	$db_prefix = get_db_prefix();
+	$db_prefix       = get_db_prefix();
 
 	/*
 	 * WARNING: Do not format nicely with empty lines between sections!
@@ -82,7 +82,7 @@ function get_schema() {
  * the table schema as required.
  */
 function upgrade() {
-	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( get_schema() );
 
 	update_site_option( PREFIX . 'db_version', DB_VERSION );
