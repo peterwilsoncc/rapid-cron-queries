@@ -10,7 +10,7 @@ use const PWCC\RapidCronQueries\PREFIX;
  * Runs as WordPress bootstraps.
  */
 function fast_bootstrap() {
-	if ( get_db_version() < DB_VERSION ) {
+	if ( true || get_db_version() < DB_VERSION ) {
 		upgrade();
 	}
 }
@@ -68,8 +68,11 @@ function get_schema() {
 		event_interval int unsigned DEFAULT NULL,
 		event_status ENUM( 'waiting', 'running', 'complete' ) NOT NULL,
 		PRIMARY KEY  (event_id),
-		KEY hook_key_schedule (event_hook,event_key,event_schedule),
-		KEY status (event_status)
+		KEY event_hook (event_hook),
+		KEY site_id (site_id),
+		KEY event_key_schedule (event_key,event_schedule),
+  		KEY event_timestamp (event_timestamp),
+		KEY event_status (event_status)
 	) $charset_collate;\n";
 
 	return $events_scheme;
