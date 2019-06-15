@@ -21,9 +21,6 @@
 
 namespace PWCC\RapidCronQueries;
 
-include_once __DIR__ . '/inc/namespace.php';
-include_once __DIR__ . '/inc/connector/namespace.php';
-include_once __DIR__ . '/inc/database/namespace.php';
+require __DIR__ . '/inc/namespace.php';
 
-fast_bootstrap();
-add_action( 'plugin_loaded', __NAMESPACE__ . '\\bootstrap' );
+bootstrap();
