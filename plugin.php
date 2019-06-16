@@ -26,7 +26,6 @@ if ( ! defined( 'PWCC_CRON_CAVALCADE_COMPAT' ) ) {
 }
 
 const DB_VERSION = 3;
-const MYSQL_DATE_FORMAT = 'Y-m-d H:i:s';
 const CACHE_GROUP = 'rapid-cron';
 
 require __DIR__ . '/inc/namespace.php';
