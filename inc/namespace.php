@@ -82,6 +82,7 @@ function create_tables() {
 		KEY `status` (`status`)
 	) ENGINE=InnoDB;\n";
 
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	if ( false === $wpdb->query( $query ) ) {
 		return false;
 	}
@@ -97,6 +98,7 @@ function create_tables() {
 		KEY `status` (`status`)
 	) ENGINE=InnoDB;\n";
 
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	if ( false === $wpdb->query( $query ) ) {
 		return false;
 	}
