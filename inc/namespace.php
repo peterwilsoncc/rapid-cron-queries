@@ -28,7 +28,6 @@ function bootstrap() {
 function is_installed() {
 	global $wpdb;
 	$db_prefix = DB_PREFIX;
-	return false;
 	if ( wp_cache_get( 'installed', CACHE_GROUP ) ) {
 		return true;
 	}
@@ -77,10 +76,13 @@ function create_tables() {
 		`start` datetime NOT NULL,
 		`nextrun` datetime NOT NULL,
 		`interval` int unsigned DEFAULT NULL,
-		`status` varchar(255) NOT NULL DEFAULT 'waiting',
+		`status` ENUM( 'waiting', 'running', 'complete', 'failed' ),
 		`schedule` varchar(255) DEFAULT NULL,
 
 		PRIMARY KEY (`id`),
+		KEY `site` (`site`),
+		KEY `hook_args` (`hook`, `args`(500)),
+		KEY `nextrun` (`nextrun`),
 		KEY `status` (`status`)
 	) ENGINE=InnoDB;\n";
 
