@@ -102,7 +102,7 @@ function create_tables() {
 	}
 
 	wp_cache_set( 'installed', true, CACHE_GROUP );
-	update_site_option( "cavalcade_db_version", DB_VERSION );
+	update_site_option( 'cavalcade_db_version', DB_VERSION );
 	/*
 	 * Ensure site meta is populated when running the WP CLI script to
 	 * install a network. Using the CLI, WP installs a single site with
