@@ -5,10 +5,6 @@ namespace PWCC\RapidCronQueries;
  * Kick it off.
  */
 function bootstrap() {
-	if ( preg_replace( '|[^a-z0-9_]|i', '', DB_PREFIX ) !== DB_PREFIX ) {
-		// Invalid Database Prefix, bail.
-		return;
-	}
 	wp_cache_add_global_groups( CACHE_GROUP );
 
 	if ( ! is_installed() && ! create_tables() ) {
@@ -27,12 +23,11 @@ function bootstrap() {
  */
 function is_installed() {
 	global $wpdb;
-	$db_prefix = DB_PREFIX;
 	if ( wp_cache_get( 'installed', CACHE_GROUP ) ) {
 		return true;
 	}
 
-	$installed = ( count( $wpdb->get_col( "SHOW TABLES LIKE '{$wpdb->base_prefix}{$db_prefix}%'" ) ) === 2 );
+	$installed = ( count( $wpdb->get_col( "SHOW TABLES LIKE '{$wpdb->base_prefix}cavalcade%'" ) ) === 2 );
 
 	if ( $installed ) {
 		// Don't check again.
@@ -49,7 +44,6 @@ function is_installed() {
  */
 function create_tables() {
 	global $wpdb;
-	$db_prefix = DB_PREFIX;
 
 	/*
 	 * Check if WP Tables are installed.
@@ -66,7 +60,7 @@ function create_tables() {
 		return false;
 	}
 
-	$query = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}{$db_prefix}_jobs` (
+	$query = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}cavalcade_jobs` (
 		`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		`site` bigint(20) unsigned NOT NULL,
 
@@ -90,7 +84,7 @@ function create_tables() {
 		return false;
 	}
 
-	$query = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}{$db_prefix}_logs` (
+	$query = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}cavalcade_logs` (
 		`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		`job` bigint(20) NOT NULL,
 		`status` varchar(255) NOT NULL DEFAULT '',
@@ -106,7 +100,7 @@ function create_tables() {
 	}
 
 	wp_cache_set( 'installed', true, CACHE_GROUP );
-	update_site_option( "{$db_prefix}_db_version", DB_VERSION );
+	update_site_option( "cavalcade_db_version", DB_VERSION );
 	/*
 	 * Ensure site meta is populated when running the WP CLI script to
 	 * install a network. Using the CLI, WP installs a single site with
@@ -115,7 +109,7 @@ function create_tables() {
 	 * Note: This does not work for multisite manual installs.
 	 */
 	add_filter( 'populate_network_meta', function( $site_meta ) {
-		$site_meta['{$db_prefix}_db_version'] = DB_VERSION;
+		$site_meta['cavalcade_db_version'] = DB_VERSION;
 		return $site_meta;
 	} );
 	return true;
