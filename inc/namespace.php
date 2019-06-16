@@ -40,6 +40,8 @@ function is_installed() {
 /**
  * Install Database tables.
  *
+ * Note the tables always run in Cavalcade compat mode.
+ *
  * @return bool True on success, False on failure.
  */
 function create_tables() {
