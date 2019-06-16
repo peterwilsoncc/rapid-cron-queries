@@ -21,6 +21,15 @@
 
 namespace PWCC\RapidCronQueries;
 
+if ( ! defined( '\\PWCC\\RAPIDCRON\\CAVALCADE_COMPAT' ) ) {
+	define( '\\PWCC\\RAPIDCRON\\CAVALCADE_COMPAT', false );
+}
+
+const DB_PREFIX = CAVALCADE_COMPAT ? 'cavalcade' : 'rapid_cron';
+const DB_VERSION = 2;
+const MYSQL_DATE_FORMAT = 'Y-m-d H:i:s';
+const CACHE_GROUP = 'rapid-cron';
+
 require __DIR__ . '/inc/namespace.php';
 
 bootstrap();
