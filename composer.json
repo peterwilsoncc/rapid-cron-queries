@@ -1,0 +1,33 @@
+{
+	"name": "peterwilsoncc/wp-cron-cavalcade",
+	"description": "Use Cavalcade to improve WP-Cron's storage without the need for the runner.",
+	"license": "GPL-2.0-or-later",
+	"type": "wordpress-plugin",
+	"authors": [
+		{
+			"name": "Peter Wilson",
+			"homepage": "https://peterwilson.cc/"
+		},
+		{
+			"name": "Human Made",
+			"homepage": "https://humanmade.com/"
+		}
+	],
+	"config": {
+		"preferred-install": "dist",
+		"sort-packages": true
+	},
+	"require": {
+		"composer/installers": "~1.0",
+		"humanmade/cavalcade": "~2.0"
+	},
+	"require-dev": {
+		"humanmade/coding-standards": "^0.8.0",
+		"phpunit/phpunit": "~7.1"
+	},
+	"extra": {
+		"installer-paths": {
+			"cavalcade": ["humanmade/cavalcade"]
+		}
+	}
+}
