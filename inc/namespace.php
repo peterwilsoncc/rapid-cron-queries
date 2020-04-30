@@ -5,8 +5,6 @@ namespace PWCC\WP_Cron_Cavalcade;
  * Initialize the plugin.
  *
  * Runs on the `plugins_loaded` hook at priority 9.
- *
- * As the
  */
 function bootstrap() {
 	if ( ! function_exists( '\\HM\\Cavalcade\\Plugin\\bootstrap' ) ) {
@@ -18,10 +16,10 @@ function bootstrap() {
 	}
 
 	// Ensure Cavalcade is installed before attempting to boostrap.
-		if (
-			! \HM\Cavalcade\Plugin\is_installed() &&
-			! \HM\Cavalcade\Plugin\create_tables()
-		) {
+	if (
+		! \HM\Cavalcade\Plugin\is_installed() &&
+		! \HM\Cavalcade\Plugin\create_tables()
+	) {
 		add_action( 'wp_install', __NAMESPACE__ . '\\bootstrap', 9 );
 		return;
 	}
