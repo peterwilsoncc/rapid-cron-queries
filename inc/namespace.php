@@ -102,7 +102,7 @@ function clear_event_cache( $pre, $timestamp, $hook, $args ) {
 }
 
 function clear_event_cache_by_obj( $pre, $event ) {
-	return clear_event_cache( $event->timestamp, $event->hook, $event->args );
+	return clear_event_cache( $pre, $event->timestamp, $event->hook, $event->args );
 }
 
 /**
